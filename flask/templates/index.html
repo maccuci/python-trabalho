@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Tarefas</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lista de Tarefas</h1>
+
+      <table>
+        <tr>
+          <th>Tarefa</th>
+          <th>Ação</th>
+        </tr>
+        {% for tarefa in tarefas %}
+        <tr>
+          <td>{{ tarefa }}</td>
+          <td>
+            <a href="/deletar/{{ loop.index0 }}">Excluir</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <form action="/" method="POST">
+        <input type="text" name="tarefa_nome" id="tarefa_nome" />
+        <div class="botao">
+          <input type="submit" value="Adicionar Tarefa" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
