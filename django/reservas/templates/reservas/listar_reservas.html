@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Reservas</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+</head>
+<body>
+    <h1>Reservas Realizadas</h1>
+    <ul>
+        {% for reserva in reservas %}
+            <li class="reserva-item">{{ reserva.nome }} - {{ reserva.data_hora }}</li>
+        {% empty %}
+            <li>Nenhuma reserva realizada.</li>
+        {% endfor %}
+    </ul>
+    <form action="{% url 'fazer_reserva' %}" method="post">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+        <label for="data_hora">Data e Hora (YYYY-MM-DD HH:MM):</label>
+        <input type="text" id="data_hora" name="data_hora" required><br>
+        <button type="submit">Fazer Reserva</button>
+    </form>
+</body>
+</html>
