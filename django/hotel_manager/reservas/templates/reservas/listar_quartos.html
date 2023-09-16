@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Quartos Disponíveis</title>
+</head>
+<body>
+    <h1>Quartos Disponíveis</h1>
+    <ul>
+        {% for quarto in quartos %}
+            <li>
+                {{ quarto.numero }}
+                {% if quarto.disponivel %}
+                    - <a href="{% url 'reservar_quarto' quarto.numero %}">Reservar</a>
+                {% else %}
+                    - Ocupado
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Nenhum quarto disponível.</li>
+        {% endfor %}
+    </ul>    
+    <a href="{% url 'adicionar_quarto' %}">Adicionar Quarto</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reservar Quarto</title>
+</head>
+<body>
+    <h1>Reservar Quarto</h1>
+    <p>Quarto: {{ quarto.numero }} - {% if quarto.disponivel %}Disponível{% else %}{% endif %}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Reservar</button>
+    </form>    
+</body>
+</html>
